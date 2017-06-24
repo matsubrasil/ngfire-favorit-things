@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title= 'MatsuBrasil Favorite Things';
+  favoriteColor= 'tomato';
+
+  setColor(selectedColor: string): void {
+    this.favoriteColor = selectedColor;
+  }
+
+  updateColor(): void {
+    console.log( 'TODO: update the color' );
+  }
 }

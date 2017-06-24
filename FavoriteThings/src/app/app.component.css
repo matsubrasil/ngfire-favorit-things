@@ -1,0 +1,14 @@
+#box {
+    width: 200px;
+    height: 100px;
+    color: white;
+    margin: 10px 0px;
+    text-align: center;
+    line-height: 100px;
+}
+.btn-color {
+    width: 100px;
+    margin: 5px 2px;
+    padding: 4px 1px;
+    background-color: #888;
+}
