@@ -11,9 +11,14 @@
 <button type="button" class="btn-color" (click)="setColor( '#800000' )">Rose Red</button>
 <br>
 <button type="button" (click)=updateColor()>Update</button>
-<hr>
-    <h2>Favorite Number</h2>
 
+<hr>
+
+<h2>Favorite Number= {{ favoriteNumber }}</h2>
+
+<button (click)="setNumber( favoriteNumber + 1 )">Up Number</button>
+<button (click)="setNumber( favoriteNumber - 1 )">Down Number</button>
+<button (click)="setNumber( 0 )">Reset</button>
 
 <hr>
 
