@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,10 @@ export class AppComponent {
   title= 'MatsuBrasil Favorite Things';
   favoriteColor= 'tomato';
   favoriteNumber = 0;
+
+  constructor( db: AngularFireDatabase ) {
+
+  }
 
   setColor(selectedColor: string): void {
     this.favoriteColor = selectedColor;
