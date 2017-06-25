@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 import * as firebase from 'firebase/app';
@@ -8,8 +8,9 @@ import * as firebase from 'firebase/app';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title= 'MatsuBrasil Favorite Things';
+export class AppComponent implements OnInit, OnDestroy {
+ 
+  title = 'MatsuBrasil Favorite Things';
   favoriteColor= 'tomato';
   favoriteNumber = 0;
 
@@ -17,19 +18,31 @@ export class AppComponent {
 
   }
 
-  setColor(selectedColor: string): void {
-    // this.favoriteColor = selectedColor;
-    firebase.database().ref().child( 'color' ).set( selectedColor );
-  }
-
-  updateColor(): void {
-    console.log( 'TODO: update the color' );
-    firebase.database().ref().child( 'color' ).once( 'value',
+  ngOnInit(): void {
+    firebase.database().ref().child( 'color' ).on( 'value',
       ( snapshot: firebase.database.DataSnapshot ) => {
         // console.log(snapshot.val());
         this.favoriteColor = snapshot.val();
       } );
   }
+
+  ngOnDestroy(): void {
+    firebase.database().ref().child( 'color' ).off();
+  }
+
+  setColor(selectedColor: string): void {
+    // this.favoriteColor = selectedColor;
+    firebase.database().ref().child( 'color' ).set( selectedColor );
+  }
+
+  // updateColor(): void {
+  //   console.log( 'TODO: update the color' );
+  //   firebase.database().ref().child( 'color' ).once( 'value',
+  //     ( snapshot: firebase.database.DataSnapshot ) => {
+  //       // console.log(snapshot.val());
+  //       this.favoriteColor = snapshot.val();
+  //     } );
+  // }
 
   // upNumber(){
   //   this.favoriteNumber++;
