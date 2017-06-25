@@ -24,10 +24,17 @@ export class AppComponent implements OnInit, OnDestroy {
         // console.log(snapshot.val());
         this.favoriteColor = snapshot.val();
       } );
+
+    firebase.database().ref().child('number').on('value',
+      (snapshot: firebase.database.DataSnapshot) => {
+        // console.log(snapshot.val());
+        this.favoriteNumber = snapshot.val();
+      });
   }
 
   ngOnDestroy(): void {
     firebase.database().ref().child( 'color' ).off();
+    firebase.database().ref().child( 'number' ).off();
   }
 
   setColor(selectedColor: string): void {
@@ -60,8 +67,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   setNumber( favoriteNumber: number ): void {
     // console.log(favoriteNumber);
+    // if (favoriteNumber >= 0) {
+    //   this.favoriteNumber = favoriteNumber;
+    // }
     if (favoriteNumber >= 0) {
-      this.favoriteNumber = favoriteNumber;
+      firebase.database().ref().child('number').set(favoriteNumber);
     }
   }
 }
